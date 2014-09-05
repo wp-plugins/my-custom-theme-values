@@ -28,12 +28,32 @@ function register_mysettings() {
 
 function jun_get_option_shortcode( $theme_option ) {
 	preg_match_all('/\(([^)]*)\)/', $theme_option['key'], $matches);
-	$val = $matches[1][0];
-  	$val = get_option( "my_value" )[$val];
+	$val2 = $matches[1][0];
+  	$val = get_option( "my_value" );
+	$val = $val[$val2];
 	return $val;
 
 }
 add_shortcode( 'get-my-values', 'jun_get_option_shortcode' );
+
+// work for adding short ccde button on tinymce editor //
+add_action('init', 'add_button_to_admin_editor');
+function add_button_to_admin_editor() {
+   if ( current_user_can('edit_posts') &&  current_user_can('edit_pages') )
+   {
+     add_filter('mce_external_plugins', 'add_plugin_js');
+     add_filter('mce_buttons', 'register_plugin_button');
+   }
+}
+function register_plugin_button($buttons) {
+   array_push($buttons, "custom_value");
+   return $buttons;
+}
+function add_plugin_js($plugin_array) {
+   $plugin_array['custom_value'] = plugins_url().'/custom-theme-values/js/editor_sc.js';
+   return $plugin_array;
+}
+// work for adding short ccde button on tinymce editor //
 
 function jun_settings_page() {
 ?>
@@ -52,7 +72,7 @@ function jun_settings_page() {
         <tr valign="top">
         <th scope="row">My value <span>1</span></th>
         <td><input type="text" name="my_value[]" value="<?php echo $options[$r]; ?>" />
-        <small>Use echo get_option( 'my_value' )<span>[0]</span>; in code to render value in frontend OR Use short code [get-my-values key="my_value(0)"] in posts and pages to render values.</small>
+        <small>Use echo get_option( 'my_value' )[<span>0</span>]; in code to render value in frontend OR Use short code [get-my-values key="my_value(<span>0</span>)"] in posts and pages to render values.</small>
         <aside></aside>
         </td>
         </tr>
@@ -64,7 +84,7 @@ function jun_settings_page() {
         <tr valign="top">
         <th scope="row">My value <span><?=$r+1?></span></th>
         <td><input type="text" name="my_value[]" value="<?php echo $options[$r]; ?>" />
-        <small>Use echo get_option( 'my_value' )<span>[<?=$r?>]</span>; in code to render value in frontend OR Use short code [get-my-values key="my_value(<?=$r?>)"] in posts and pages to render values.</small>
+        <small>Use echo get_option( 'my_value' )[<span><?=$r?></span>]; in code to render value in frontend OR Use short code [get-my-values key="my_value(<span><?=$r?></span>)"] in posts and pages to render values.</small>
         <aside><a class="removeList" href="javascript:void(0)" onclick="rem(this)">Remove Value</a></aside>
         </td>
         </tr>
@@ -85,7 +105,7 @@ var count = <?=count($options)?>;
 
 		
 		$clone.find('span').each(function() {
-			jQuery(this).html(count);
+			jQuery(this).html(count-1);
 		});
 		
 		$clone.find('input').each(function() {
@@ -101,8 +121,8 @@ var count = <?=count($options)?>;
 		
 	});
 function rem(str){
-			jQuery(str).parent().parent().parent().remove();
-			count 	= count - 1;
+		jQuery(str).parent().parent().parent().remove();
+		count 	= count - 1;
 }
 </script>
 <?php } ?>
