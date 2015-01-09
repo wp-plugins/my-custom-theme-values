@@ -5,7 +5,7 @@ Donate Link: http://www.junaidiqbal.net
 Tags: theme, values, theme values, custom theme values, custom theme options, short code, short code option
 Requires at least: 3
 Version: 1.1
-Tested up to: 3.9
+Tested up to: 4.1
 Stable tag: 1.0
 License: GPLv2 or later 
 

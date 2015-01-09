@@ -50,7 +50,7 @@ function register_plugin_button($buttons) {
    return $buttons;
 }
 function add_plugin_js($plugin_array) {
-   $plugin_array['custom_value'] = plugins_url().'/custom-theme-values/js/editor_sc.js';
+   $plugin_array['custom_value'] = plugins_url().'/my-custom-theme-values/js/editor_sc.js';
    return $plugin_array;
 }
 // work for adding short ccde button on tinymce editor //
