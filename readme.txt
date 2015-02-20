@@ -2,7 +2,7 @@
 Contributors: Junaid Iqbal   
 Author link: http://www.junaidiqbal.net
 Donate Link: http://www.junaidiqbal.net
-Tags: theme, values, theme values, custom theme values, custom theme options, short code, short code option
+Tags: theme, values, theme values, custom theme values, custom theme options, short code, short code option, custom, custom field, custom field template, custom fields, custom post type, field, fields, meta, template,add custom fields to search, book custom post type, castom, custom, custom field, custom fields search, custom post, custom search, custom search plugin, cutom, default post types, feld, field, include custom fields in search, portfolio custom post type, Post, search, search by custom fields, search by custom post types, serach, website search,admin, advanced, custom, custom field, edit, field, file, image, magic fields, matrix, more fields, Post, repeater, simple fields, text, textarea, type,custom field, custom field groups, custom fields, custom fields for taxonomy terms, custom-post-type-fields, dropdown field, extra fields, extra parameters, more fields, numeric field, page attributes, page fields, post attributes, post fields, sortable custom field groups, sortable custom fields, text field, textarea
 Requires at least: 3
 Version: 1.1
 Tested up to: 4.1
